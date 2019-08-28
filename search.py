@@ -93,23 +93,23 @@ def depthFirstSearch(problem):
     Caminho = []
     Visitados = []
 
-    Pilha_Caminho.push(Caminho)
-    Pilha_Estados.push(problem.getStartState())
+    Pilha_Caminho.push(Caminho) # empilha lista de Caminho
+    Pilha_Estados.push(problem.getStartState()) # estado inicial
 
     while (Pilha_Caminho.isEmpty() == False and Pilha_Estados.isEmpty() == False):
-        actions_made = Pilha_Caminho.pop()
-        state = Pilha_Estados.pop()
+        Caminho_Andado = Pilha_Caminho.pop() # atualiza caminho
+        state = Pilha_Estados.pop() # atualiza estado
 
-        if problem.isGoalState(state):
-            return actions_made
+        if problem.isGoalState(state): # caso estado atual seja o desejado,
+            return Caminho_Andado # retorna o caminho total
 
-        if state not in Visitados:  # if state-node is not visited yet , do it
-            Visitados.append(state)  # include from on visited set
-            for sucessor in problem.getSuccessors(state):  # Getting succesors..
-                if sucessor[0] not in Visitados:
-                    Pilha_Caminho.push(actions_made + [sucessor[1]])  # push successors in stack if not visited
-                    Pilha_Estados.push(sucessor[0])
-    return []
+        if state not in Visitados:  # caso estado atual não tenha sido visitado
+            Visitados.append(state)  # marca estado como visitado
+            for sucessor in problem.getSuccessors(state):  # busca sucessores
+                if sucessor[0] not in Visitados: # caso sucessor não tenha sido visitado
+                    Pilha_Caminho.push(Caminho_Andado + [sucessor[1]])  # atualiza caminho total na pilha
+                    Pilha_Estados.push(sucessor[0]) # atualiza estado
+    return
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
