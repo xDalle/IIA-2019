@@ -23,6 +23,7 @@ class SearchProblem:
     """
     This class outlines the structure of a search problem, but doesn't implement
     any of the methods (in object-oriented terminology: an abstract class).
+
     You do not need to change anything in this class, ever.
     """
 
@@ -35,6 +36,7 @@ class SearchProblem:
     def isGoalState(self, state):
         """
           state: Search state
+
         Returns True if and only if the state is a valid goal state.
         """
         util.raiseNotDefined()
@@ -42,6 +44,7 @@ class SearchProblem:
     def getSuccessors(self, state):
         """
           state: Search state
+
         For a given state, this should return a list of triples, (successor,
         action, stepCost), where 'successor' is a successor to the current
         state, 'action' is the action required to get there, and 'stepCost' is
@@ -52,6 +55,7 @@ class SearchProblem:
     def getCostOfActions(self, actions):
         """
          actions: A list of actions to take
+
         This method returns the total cost of a particular sequence of actions.
         The sequence must be composed of legal moves.
         """
@@ -71,10 +75,13 @@ def tinyMazeSearch(problem):
 def depthFirstSearch(problem):
     """
     Search the deepest nodes in the search tree first.
+
     Your search algorithm needs to return a list of actions that reaches the
     goal. Make sure to implement a graph search algorithm.
+
     To get started, you might want to try some of these simple commands to
     understand the search problem that is being passed in:
+
     print("Start:", problem.getStartState())
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
@@ -86,22 +93,20 @@ def depthFirstSearch(problem):
     Caminho = []
     Visitados = []
 
-    Pilha_Caminho.push(Caminho) # empilha lista de Caminho
-    Pilha_Estados.push(problem.getStartState()) # estado inicial
+    Pilha_Caminho.push(Caminho) # empilha caminho (vazio, no começo)
+    Pilha_Estados.push(problem.getStartState()) # empilha estado inicial
 
     while (Pilha_Caminho.isEmpty() == False and Pilha_Estados.isEmpty() == False):
         Caminho_Andado = Pilha_Caminho.pop() # atualiza caminho
-        state = Pilha_Estados.pop() # atualiza estado
-
-        if problem.isGoalState(state): # caso estado atual seja o desejado,
+        Estado_Atual = Pilha_Estados.pop() # atualiza estado
+        if problem.isGoalState(Estado_Atual): # caso estado atual seja o desejado,
             return Caminho_Andado # retorna o caminho total
-
-        if state not in Visitados:  # caso estado atual não tenha sido visitado
-            Visitados.append(state)  # marca estado como visitado
-            for sucessor in problem.getSuccessors(state):  # busca sucessores
-                if sucessor[0] not in Visitados: # caso sucessor não tenha sido visitado
-                    Pilha_Caminho.push(Caminho_Andado + [sucessor[1]])  # atualiza caminho total na pilha
-                    Pilha_Estados.push(sucessor[0]) # atualiza estado
+        if Estado_Atual not in Visitados: # caso estado atual não tenha sido visitado
+            Visitados.append(Estado_Atual) # marca estado como visitado
+            for Sucessor in problem.getSuccessors(Estado_Atual): # busca sucessores
+                if Sucessor[0] not in Visitados: # caso sucessor não tenha sido visitado
+                    Pilha_Caminho.push(Caminho_Andado + [Sucessor[1]]) # atualiza caminho total na pilha
+                    Pilha_Estados.push(Sucessor[0]) # atualiza estado
     return
 
 def breadthFirstSearch(problem):
@@ -124,23 +129,21 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-	def djikstra(initial):
-		from util import PriorityQueue
-		q = PriorityQueue()
-		q.push((initial, []), 0)
-		dist = Dict()
-		dist[initial] = 0
-		while(not q.isEmpty()):
-			u, path = q.pop()
-			if u == problem.isGoalState():
-				return path
-			for (v, action, coust) in problem.getSuccessors(u):
-				if v not in dist or dist[v] > dist[u] + coust + heuristic(v, problem):
-					dist[v] = dist[u] + coust + heuristic(v, problem)
-					q.push((v, path + [action]), dist[v])
-	return djikstra(problem.getStartState())
-    # util.raiseNotDefined()
-
+    def djikstra(Estado_Inicial):
+        from util import PriorityQueue
+        Fila_Estados = PriorityQueue() # cria fila de prioridade
+        Fila_Estados.push((Estado_Inicial, []), 0) # insere tupla do estado inicial e vetor, com prioridade zero
+        Distancia = dict() # cria dicionário para guardar distancia (afim de comparação)
+        Distancia[Estado_Inicial] = 0 # seta distância inicial = 0
+        while(not Fila_Estados.isEmpty()): # enquanto fila não está vazia,
+            Estado_Atual, Caminho = Fila_Estados.pop() # desempilha estado atual e caminho até então
+            if problem.isGoalState(Estado_Atual): # se estado atual é o desejado,
+                return Caminho # retorna caminho
+            for (Sucessor, Acao, Custo) in problem.getSuccessors(Estado_Atual): # verifica sucessores
+                if Sucessor not in Distancia or Distancia[Sucessor] > Distancia[Estado_Atual] + Custo + heuristic(Sucessor, problem):
+                    Distancia[Sucessor] = Distancia[Estado_Atual] + Custo + heuristic(Sucessor, problem) # atualiza distância de acordo com sucessor
+                    Fila_Estados.push((Sucessor, Caminho + [Acao]), Distancia[Sucessor])
+    return djikstra(problem.getStartState()) # recursividade
 
 # Abbreviations
 bfs = breadthFirstSearch
