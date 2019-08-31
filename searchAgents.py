@@ -292,6 +292,28 @@ def sumHeuristic(position, problem, info={}): # Heurística de soma entre manhat
     y = euclideanHeuristic(position, problem, info={})
     return x+y
 
+def geoHeuristic(position, problem, info={}):
+
+    "      Resultados:     "
+    "  QTD. nós expandidos "
+    
+    # mediumMaze:   246   -   Melhor do que manhattanHeuristic (259) e euclideanHeuristic (267)
+    # bigMaze:      589   -   Pior mapa para a geoHeuristic (não é melhor do que a manhattanHeuristic, nem euclideanHeuristic
+    # openMaze:     357   -   Melhor do que manhattanHeuristic (621) e euclideanHeuristic(611)
+
+    # Apesar de ser melhor do que as heurísticas já apresentadas em relação à nós expandidos,
+    # em alguns casos realiza um custo maior e, dessa forma, faz menos pontos.
+    
+    var1 = position
+    var2 = problem.goal
+    var3 = problem.getStartState()
+    dx1 = var1[0] - var2[0]
+    dy1 = var1[1] - var2[1]
+    dx2 = var3[0] - var2[0]
+    dy2 = var3[1] - var2[1]
+    Distancia = abs(dx1*dy2 - dx2*dy1)
+    return Distancia
+
 class CornersProblem(search.SearchProblem):
     """
     This search problem finds paths through all four corners of a layout.
