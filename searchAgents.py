@@ -268,29 +268,29 @@ def euclideanHeuristic(position, problem, info={}):
 
 def subHeuristic(position, problem, info={}): # Heurística de subtração entre a manhattanHeuristic e euclideanHeuristic
     
-        "      Resultados:     "
-        "  QTD. nós expandidos "
+    "      Resultados:     "
+    "  QTD. nós expandidos "
     
-        # mediumMaze:   192   -   Melhor do que manhattanHeuristic (259) e euclideanHeuristic (267)
-        # bigMaze:      596   -   Pior mapa para a subHeuristic (não é melhor do que a manhattanHeuristic, nem euclideanHeuristic)
-        # openMaze:     541   -   Melhor do que manhattanHeuristic (621) e euclideanHeuristic (611)
+    # mediumMaze:   192   -   Melhor do que manhattanHeuristic (259) e euclideanHeuristic (267)
+    # bigMaze:      596   -   Pior mapa para a subHeuristic (não é melhor do que a manhattanHeuristic, nem euclideanHeuristic)
+    # openMaze:     541   -   Melhor do que manhattanHeuristic (621) e euclideanHeuristic (611)
     
-    xy1 = position
-    xy2 = problem.goal
-    return manhattanHeuristic(position, problem, info={}) - euclideanHeuristic(position, problem, info={})
+    x = manhattanHeuristic(position, problem, info={})
+    y = euclideanHeuristic(position, problem, info={})
+    return x-y
 
 def sumHeuristic(position, problem, info={}): # Heurística de soma entre manhattanHeuristic e euclideanHeuristic
     
-        "      Resultados:     "
-        "  QTD. nós expandidos "
+    "      Resultados:     "
+    "  QTD. nós expandidos "
     
-        # mediumMaze:   262   -   Melhor do que euclideanHeuristic (267)
-        # bigMaze:      583   -   Melhor do que manhattanHeuristic (585) e euclideanHeuristic (586)
-        # openMaze:     612   -   Melhor do que manhattanHeuristic (621)
+    # mediumMaze:   262   -   Melhor do que euclideanHeuristic (267)
+    # bigMaze:      583   -   Melhor do que manhattanHeuristic (585) e euclideanHeuristic (586)
+    # openMaze:     612   -   Melhor do que manhattanHeuristic (621)
         
-    xy1 = position
-    xy2 = problem.goal
-    return manhattanHeuristic(position, problem, info={}) + euclideanHeuristic(position, problem, info={})
+    x = manhattanHeuristic(position, problem, info={})
+    y = euclideanHeuristic(position, problem, info={})
+    return x+y
 
 class CornersProblem(search.SearchProblem):
     """
