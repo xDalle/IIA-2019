@@ -266,6 +266,12 @@ def euclideanHeuristic(position, problem, info={}):
 # This portion is incomplete.  Time to write code!  #
 #####################################################
 
+"   Recomendamos usar, para cada mapa, no quesito economia de memória:   "
+
+# mediumMaze:   subHeuristic
+# bigMaze:      sumHeuristic
+# openMaze:     geoHeuristic
+                    
 def subHeuristic(position, problem, info={}): # Heurística de subtração entre a manhattanHeuristic e euclideanHeuristic
     
     "      Resultados:     "
@@ -302,16 +308,16 @@ def geoHeuristic(position, problem, info={}):
     # openMaze:     357   -   Melhor do que manhattanHeuristic (621) e euclideanHeuristic(611)
 
     # Apesar de ser melhor do que as heurísticas já apresentadas em relação à nós expandidos,
-    # em alguns casos realiza um custo maior e, dessa forma, faz menos pontos.
+    # em alguns casos realiza um custo maior e, dessa forma, faz menos pontos. 
     
     var1 = position
     var2 = problem.goal
     var3 = problem.getStartState()
-    dx1 = var1[0] - var2[0]
-    dy1 = var1[1] - var2[1]
-    dx2 = var3[0] - var2[0]
-    dy2 = var3[1] - var2[1]
-    Distancia = abs(dx1*dy2 - dx2*dy1)
+    dx1 = var1[0] - var2[0] # distância x entre posição atual e objetivo
+    dy1 = var1[1] - var2[1] # distância y entre posição atual e objetivo
+    dx2 = var3[0] - var2[0] # distância x entre posição inicial e objetivo
+    dy2 = var3[1] - var2[1] # distância y entre posição inicial e objetivo
+    Distancia = abs(dx1*dy2 - dx2*dy1) # método de cálculo Breaking Ties
     return Distancia
 
 class CornersProblem(search.SearchProblem):
