@@ -1,0 +1,73 @@
+# rule.krb
+
+direct_febre
+	foreach
+		knowledge.febre($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_mancha
+	foreach
+		knowledge.mancha($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_musculo
+	foreach
+		knowledge.musculo($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_articulacao
+	foreach
+		knowledge.articulacao($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+
+direct_dorarticular
+	foreach
+		knowledge.dorarticular($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_edema
+	foreach
+		knowledge.edema($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_conjuntivite
+	foreach
+		knowledge.conjuntivite($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_cabeca
+	foreach
+		knowledge.cabeca($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_coceira
+	foreach
+		knowledge.coceira($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_hipertrofia
+	foreach
+		knowledge.hipertrofia($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_discrasisa
+	foreach
+		knowledge.discrasia($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)
+		
+direct_acometimento
+	foreach
+		knowledge.acometimento($numero, $doenca)
+	assert
+		knowledge.doenca($doenca)

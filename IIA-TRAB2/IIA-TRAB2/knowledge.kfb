@@ -1,0 +1,49 @@
+#knowledge.kfb
+
+febre(1, dengue)
+febre(2, zika)
+febre(3, chikungunya)
+
+mancha(1, dengue)
+mancha(2, zika)
+mancha(3, chikungunya)
+
+musculo(1, dengue)
+musculo(2, zika)
+musculo(3, chikungunya)
+
+articulacao(1, dengue)
+articulacao(2, zika)
+articulacao(3, chikungunya)
+
+dorarticular(1, dengue)
+dorarticular(2, zika)
+dorarticular(3, chikungunya)
+
+edema(1, dengue)
+edema(2, zika)
+edema(3, chikungunya)
+
+conjuntivite(1, dengue)
+conjuntivite(2, zika)
+conjuntivite(3, chikungunya)
+
+cabeca(1, dengue)
+cabeca(2, zika)
+cabeca(3, chikungunya)
+
+coceira(1, dengue)
+coceira(2, zika)
+coceira(3, chikungunya)
+
+hipertrofia(1, dengue)
+hipertrofia(2, zika)
+hipertrofia(3, chikungunya)
+
+discrasia(1, dengue)
+discrasia(2, zika)
+discrasia(3, chikungunya)
+
+acometimento(1, dengue)
+acometimento(2, zika)
+acometimento(3, chikungunya)
